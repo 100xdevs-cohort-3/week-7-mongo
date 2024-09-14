@@ -3,11 +3,15 @@ const { UserModel, TodoModel } = require("./db");
 const { auth, JWT_SECRET } = require("./auth");
 const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
-
+const dotenv = require('dotenv')
 
 const port  = 5000;
 const app = express();
 app.use(express.json());
+dotenv.config({
+    path: './.env'
+})
+
 
 
 app.post("/signup", async function(req, res) {
@@ -163,7 +167,7 @@ app.post("/todoFinish/:todoId", auth, async function(req, res) {
 
 });
 
-mongoose.connect("/paste mongobd URI").then(
+mongoose.connect(process.env.MONGODB_URI).then(
     app.listen(port, () => {
         console.log(`Server is running at ${port}`);
     })
