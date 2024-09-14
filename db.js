@@ -31,7 +31,10 @@ const User= new Schema({
 
 
 const Todo = new Schema({
-    userId:ObjectId,
+    userId:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    },
     title: String,
     done:{
         type: Boolean,
