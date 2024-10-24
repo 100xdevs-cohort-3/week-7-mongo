@@ -1,10 +1,10 @@
 const jwt = require("jsonwebtoken");
-const JWT_SECRET = "s3cret";
+
 
 function auth(req, res, next) {
     const token = req.headers.authorization;
 
-    const response = jwt.verify(token, JWT_SECRET);
+    const response = jwt.verify(token,"arjunchay");
 
     if (response) {
         req.userId = response.id;
@@ -16,7 +16,4 @@ function auth(req, res, next) {
     }
 }
 
-module.exports = {
-    auth,
-    JWT_SECRET
-}
+module.exports =auth
